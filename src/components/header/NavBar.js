@@ -16,7 +16,7 @@ export const NavBar = () => {
     const [user, setUser] = useState({});
 
     const logOut = () => {
-        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
         navigate(routes.login)
     }
     useEffect(() => {
@@ -30,7 +30,7 @@ export const NavBar = () => {
                     <img src={logo} alt='pds logo'/>
                 </div>
             </NavLink>
-            <div className=' flex justify-center items-center space-x-8 transition-all'>
+            <div className='hidden lg:flex justify-center items-center space-x-8 transition-all'>
                 <NavLink to="" className={linkStyle} >
                     Home
                 </NavLink>

@@ -10,22 +10,22 @@ export const MobileFooter = () => {
 
   return (
     <div className="bg-primary-base px-20 py-2 text-white flex justify-between">
-      <NavLink exact to="/" activeClassName="active">
+      <NavLink exact="true" to="/">
         {({ isActive }) =>
           isActive ? <AiFillHome size={iconSize} /> : <AiOutlineHome size={iconSize} />
         }
       </NavLink>
-      <NavLink exact to="/search" activeClassName="active">
+      <NavLink exact="true" to="/search">
         {({ isActive }) =>
           isActive ? <RiSearchFill size={iconSize} /> : <AiOutlineSearch size={iconSize} />
         }
       </NavLink>
-      <NavLink exact to="/cart" activeClassName="active">
+      <NavLink exact="true" to="/cart">
         {({ isActive }) =>
           isActive ? <FaShoppingCart size={iconSize} /> : <AiOutlineShoppingCart size={iconSize} />
         }
       </NavLink>
-      <NavLink exact to="/profile" activeClassName="active">
+      <NavLink exact="true" to="/profile">
         {({ isActive }) =>
           isActive ? <MdPerson size={iconSize} /> : <MdPersonOutline size={iconSize} />
         }

@@ -7,10 +7,10 @@ export const Footer = () => {
     
   return (
     <div>
-        <div className=' hidden md:block'>
+        <div className=' hidden lg:block'>
             <DesktopFooter/>
         </div>
-        <div className=' md:hidden'>
+        <div className=' lg:hidden'>
             <MobileFooter/>
         </div>
     </div>

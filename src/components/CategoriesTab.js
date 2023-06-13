@@ -30,7 +30,7 @@ export const CategoriesTab = () => {
 
   return (
         <div className=' w-60 h-96 rounded-md overflow-x-hidden overflow-y-auto bg-white'>
-            <p className=' bg-primary-orange-base px-8 py-2 text-white text-center'>Categories</p>
+            <p className=' bg-primary-orange-base px-10 py-2 text-white text-center'>Categories</p>
             <div className=' text-left text-black text-sm'>
                 {categories? categories.map((category) =>(
                         <div className=' flex gap-1 items-center mx-auto px-4 py-2' key={category._id}>

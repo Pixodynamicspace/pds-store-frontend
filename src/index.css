@@ -7,4 +7,7 @@
         background-color: "#FF3C20";
         color: #fff;
     }
+    * {
+        font-family: 'Rubik','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    }
 }

@@ -53,7 +53,7 @@ export const HeroCarousel = () => {
             <div style={{backgroundImage: `url(${images[selected]?.picture_url})`}} className="w-full h-full rounded-2xl bg-center duration-500">
                 
             </div>
-            <div className="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+            <div className="absolute z-10 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
                 {images? images.map((image,index) =>(
                         <button type="button" style={{backgroundColor: index === selected? "white" : "transparent"}} className="w-3 h-3 rounded-full border " onClick={()=> setSelected(+index) } key={image._id}></button>
                     ))

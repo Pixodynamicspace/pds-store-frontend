@@ -3,11 +3,14 @@ import { GET_ALL_CATEGORIES } from '../../constants/links';
 import { config } from '../../constants/details';
 import axios from 'axios';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
+import { useSearchParams } from "react-router-dom";
 
 export const ProductSearch = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [categories, setCategories] = useState([]);
     const [selectedOption, setSelectedOption] = useState('all');
+    const [query, setQuery] = useState('');
+    let [, setSearchParams] = useSearchParams();
     const fetchCategories = useCallback(async (signal) => {
         try {
            const result = await axios.get(GET_ALL_CATEGORIES, {signal,...config});
@@ -35,15 +38,22 @@ export const ProductSearch = () => {
         setSelectedOption(option);
         setIsOpen(false);
       };
+
+    const handleSearch = (event)=> {
+        setQuery(event.currentTarget.value);
+        let params = {}
+        params[selectedOption] = event.currentTarget.value;
+        setSearchParams(params);
+    }
   return (
-    <div className=' flex justify-center w-3/5 rounded-md md:w-2/5 mx-auto my-4 bg-white'>
-            <div className=" relative custom-dropdown hidden md:block bg-primary-orange-base focus:outline-none hover:bg-primary-orange-muted 
-                py-1 text-primary-orange-base w-2/5 text-center cursor-pointer rounded-r-lg">
+    <div className=' flex justify-center w-3/5 rounded-md lg:w-2/5 mx-auto my-4 z-auto bg-white'>
+            <div className=" relative custom-dropdown hidden lg:block bg-primary-orange-base focus:outline-none hover:bg-primary-orange-muted 
+                py-1 text-primary-orange-base w-2/5 text-center cursor-pointer rounded-r-lg transition-all duration-500 ">
                         <div className="selected-option font-bold text-white text-center flex justify-center gap-2 items-center p-2" onClick={() => setIsOpen(!isOpen)}>
                             <p>{ selectedOption[0].toLocaleUpperCase() + selectedOption.toLocaleLowerCase().slice(1)}</p> {isOpen? <AiFillCaretUp/> : <AiFillCaretDown/>}
                         </div>
                         {isOpen && (
-                            <ul className=" absolute bg-white options-list text-left py-4 font-bold font-Space-Grotesk rounded-md border border-primary-orange-base w-full">
+                            <ul className=" absolute bg-white options-list text-left py-4 font-bold font-Space-Grotesk rounded-md border border-primary-orange-base w-full shadow-sm shadow-primary-dark">
                             <li
                                 className={`${'all' === selectedOption ? 'selected ' : ''} cursor-pointer hover:bg-yellow-300 px-4`}
                                 onClick={() => handleOptionClick('all')}
@@ -62,7 +72,7 @@ export const ProductSearch = () => {
                             </ul>
                         )}
             </div>
-            <input className=' focus:outline-none p-1 w-3/5' type="text" name="" placeholder='Search for anything'/>
+            <input className=' focus:outline-none p-1 w-3/5' type="text" autoComplete='on' name="" onChange={handleSearch} value={query} placeholder='Search for anything'/>
         </div>
   )
 }
