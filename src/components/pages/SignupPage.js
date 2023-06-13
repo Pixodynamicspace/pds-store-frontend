@@ -99,7 +99,7 @@ export const SignupPage = () => {
       });
   }
 return (
-  <div className=' lg:px-32 px-10'>
+  <div className=' lg:px-32 px-10 py-4'>
       <header className=' text-center my-8'>
           <h1 className=' font-bold text-orange-500 text-3xl'>Welcome to PDS Store</h1>
           <p className=' font-semibold text-sm'>Your online patform to buy and sell anything </p>

@@ -1,13 +1,10 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
+import { checkAuth } from '../hooks/checkAuth';
 
 
-const useAuth = ()=>{
-    const token = JSON.parse(localStorage.getItem('token'));
-    return token? true : false;
-}
 export const ProtectedRoutes = () => {
-  return (useAuth()?
+  return (checkAuth()?
     <Outlet/>
     : <Navigate to="/signin"/>
   )
