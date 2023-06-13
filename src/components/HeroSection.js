@@ -13,7 +13,7 @@ export const HeroSection = () => {
                 <HeroCarousel/>
             </div>
         </div>
-        <div>
+        <div className=' bg-white mx-auto text-black p-4 w-4/5 '>
             features
         </div>
     </section>
