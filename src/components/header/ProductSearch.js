@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { GET_ALL_CATEGORIES } from '../../constants/links';
 import { config } from '../../constants/details';
 import axios from 'axios';
-import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
+import { AiFillCaretDown, AiFillCaretUp, AiOutlineSearch } from 'react-icons/ai';
 import { useSearchParams } from "react-router-dom";
 
 export const ProductSearch = () => {
@@ -46,7 +46,7 @@ export const ProductSearch = () => {
         setSearchParams(params);
     }
   return (
-    <div className=' flex justify-center w-3/5 rounded-md lg:w-2/5 mx-auto my-4 z-auto bg-white'>
+    <div className=' flex lg:justify-center items-center w-3/5 rounded-md lg:w-2/5 mx-auto my-4 z-auto pl-2 lg:pl-0 bg-white'>
             <div className=" relative custom-dropdown hidden lg:block bg-primary-orange-base focus:outline-none hover:bg-primary-orange-muted 
                 py-1 text-primary-orange-base w-2/5 text-center cursor-pointer rounded-r-lg transition-all duration-500 ">
                         <div className="selected-option font-bold text-white text-center flex justify-center gap-2 items-center p-2" onClick={() => setIsOpen(!isOpen)}>
@@ -72,7 +72,8 @@ export const ProductSearch = () => {
                             </ul>
                         )}
             </div>
-            <input className=' focus:outline-none p-1 w-3/5' type="text" autoComplete='on' name="" onChange={handleSearch} value={query} placeholder='Search for anything'/>
+            <AiOutlineSearch size={20} className=' lg:hidden'/>
+            <input className=' focus:outline-none p-1 w-3/5' type="text" autoComplete='on' name="search" onChange={handleSearch} value={query} placeholder='Search for anything'/>
         </div>
   )
 }

@@ -6,10 +6,10 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { RiSearchFill } from 'react-icons/ri';
 
 export const MobileFooter = () => {
-  const iconSize = 20;
+  const iconSize = 30;
 
   return (
-    <div className="bg-primary-base px-20 py-2 text-white flex justify-between">
+    <div className="bg-primary-base px-20 py-4 text-white flex justify-between">
       <NavLink exact="true" to="/">
         {({ isActive }) =>
           isActive ? <AiFillHome size={iconSize} /> : <AiOutlineHome size={iconSize} />

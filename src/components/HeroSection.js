@@ -19,7 +19,7 @@ export const HeroSection = () => {
                 <HeroCarousel/>
             </div>
         </div>
-        <div className=' bg-white mx-auto text-black px-4 py-8 w-4/5 rounded-md flex gap-4 items-center justify-around '>
+        <div className='hidden bg-white mx-auto text-black px-4 py-8 w-4/5 rounded-md lg:flex gap-4 items-center justify-around '>
             <div className=' flex items-center gap-2'>
                 <div className=' w-8'>
                     <img src={discount_icon} alt="secure payments"/>
