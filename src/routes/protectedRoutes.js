@@ -1,11 +1,11 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { checkAuth } from '../hooks/checkAuth';
+import useAuth from '../hooks/useAuth';
 
 
 export const ProtectedRoutes = () => {
-  return (checkAuth()?
+  return (useAuth()?
     <Outlet/>
-    : <Navigate to="/signin"/>
+    : <Navigate to="/login"/>
   )
 }

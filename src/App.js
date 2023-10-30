@@ -1,9 +1,18 @@
 import './App.css';
+import { AuthContextProvider } from './context/AuthContext';
+import { ThemeContextProvider } from './context/ThemeContext';
+import { UserContextProvider } from './context/UserContext';
 import { IndexRoutes } from './routes/indexRoutes';
 
 function App() {
   return (
-    <IndexRoutes/>
+    <ThemeContextProvider>
+      <AuthContextProvider>
+        <UserContextProvider>
+          <IndexRoutes/>
+        </UserContextProvider>
+      </AuthContextProvider>
+    </ThemeContextProvider>
   );
 }
 

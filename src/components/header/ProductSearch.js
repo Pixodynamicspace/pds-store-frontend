@@ -14,7 +14,7 @@ export const ProductSearch = () => {
     const fetchCategories = useCallback(async (signal) => {
         try {
            const result = await axios.get(GET_ALL_CATEGORIES, {signal,...config});
-           setCategories(() => [...result.data.categories]);
+           setCategories(() => [...result.data?.categories]);
         } catch (error) {
            if (!signal.aborted) {
             console.log(error);

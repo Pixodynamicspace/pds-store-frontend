@@ -40,3 +40,7 @@ export const GET_CATEGORY_BY_NAME = `${BASE_URL}/category/`;
 //Carousel Images
 // eslint-disable-next-line
 export const GET_ALL_CAROUSEL_IMAGES = `${BASE_URL}/carousel/images`;
+
+// Products
+// eslint-disable-next-line
+export const GET_ALL_PRODUCTS = `${BASE_URL}/product/products`;

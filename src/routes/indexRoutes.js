@@ -4,6 +4,8 @@ import { Home } from '../components/home';
 import { HomePage } from '../components/pages/HomePage';
 import { LoginPage } from '../components/pages/LoginPage';
 import { SignupPage } from '../components/pages/SignupPage';
+import DashBoardRoutes from './DashboardRoutes';
+import NotFoundPage from '../components/pages/NotFoundPage';
 
 export const IndexRoutes = () => {
   return (
@@ -14,8 +16,8 @@ export const IndexRoutes = () => {
         </Route>
         <Route path='/login' element={<LoginPage/>} />
         <Route path='/signup' element={<SignupPage/>} />
-        <Route path='*' element={<HomePage/>} />
-
+        <Route path='/dashboard/*' element={<DashBoardRoutes />} />
+        <Route path='*' element={<NotFoundPage/>} />
       </Routes>
     </Router>
   )

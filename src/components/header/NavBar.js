@@ -1,28 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { checkAuth } from '../../hooks/checkAuth';
 import {AiOutlineLogout} from 'react-icons/ai';
 import profile_image from '../../assets/profile_image.png';
 import {ThemeToggleBtn} from '../buttons/themeToggle';
 import logo from '../../assets/pds-logo.svg';
-import { useNavigate } from 'react-router-dom';
-import { routes } from '../../constants/routes';
+import { useUserContext } from '../../context/UserContext';
+import useLogOut from '../../hooks/useLogOut';
+import useAuth from '../../hooks/useAuth';
 
 export const NavBar = () => {
-    const navigate = useNavigate();
-
     const linkStyle =' hover:border-b-2 transition-all';
-    const loggedIn = checkAuth();
-    const [user, setUser] = useState({});
+    const loggedIn = useAuth();
+    const { user } = useUserContext();
 
-    const logOut = () => {
-        sessionStorage.removeItem('token');
-        navigate(routes.login)
-    }
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'))
-        setUser(user)
-    }, []);
+    const logOut = useLogOut()
+    
   return (
     <div className=' flex justify-between items-center mb-2 text-white py-0 px-20'>
             <NavLink to='' className=''>
@@ -31,7 +23,7 @@ export const NavBar = () => {
                 </div>
             </NavLink>
             <div className='hidden lg:flex justify-center items-center space-x-8 transition-all'>
-                <NavLink to="" className={linkStyle} >
+                <NavLink to="/" className={linkStyle} >
                     Home
                 </NavLink>
                 <NavLink to="" className={linkStyle} >
@@ -50,10 +42,10 @@ export const NavBar = () => {
             <div className=' flex items-center space-x-4'>
                 <div className={`${loggedIn? 'flex ': 'hidden '} items-center space-x-2`}>
                     <div className=' w-6'>
-                        <img src={user? user.profile_pic : profile_image} alt=""/>
+                        <img src={user? user?.profile_pic : profile_image} alt=""/>
                     </div>
                     <NavLink to="" className={linkStyle} >
-                        {user? user.fullName : 'User'}
+                        {user? user?.fullName : 'User'}
                     </NavLink>
                 </div>
                 <div className={`${loggedIn? 'hidden ': 'block '} items-center space-x-2`}>
@@ -65,7 +57,7 @@ export const NavBar = () => {
                     </NavLink>
                 </div>
                 
-                <NavLink to="/signup" className=' bg-primary-orange-base hover:bg-primary-orange-muted text-sm px-4 py-2' >
+                <NavLink to="/dashboard/sell" className=' bg-primary-orange-base hover:bg-primary-orange-muted text-sm px-4 py-2' >
                     Sell Now
                 </NavLink>
                 <ThemeToggleBtn/>

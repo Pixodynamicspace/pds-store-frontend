@@ -1,6 +1,6 @@
 import axios from "axios";
 import { config } from "../constants/details";
-import { GET_ALL_CATEGORIES, UPDATE_USER } from "../constants/links";
+import { GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, UPDATE_USER } from "../constants/links";
 
 export const updateUser = async (id, data) => {
     try {
@@ -19,4 +19,14 @@ export const getCategories = async () => {
     } catch (error) {
         return { data: undefined, error: error };
     }
-  }
+};
+
+export const getAllProducts = async (pageSize, pageNumber, active) => {
+    try {
+      const res = await axios.get(`${GET_ALL_PRODUCTS}?pageSize=${pageSize}&page=${pageNumber}&active=${active}`);
+      console.log(res);
+      return { data: res.data.data, error: undefined };
+    } catch (error) {
+        return { data: undefined, error: error };
+    }
+};

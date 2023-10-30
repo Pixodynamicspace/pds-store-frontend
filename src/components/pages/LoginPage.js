@@ -5,9 +5,13 @@ import { ThreeCircles } from 'react-loader-spinner';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { LOGIN_URL } from '../../constants/links';
+import { useAuthContext } from '../../context/AuthContext';
+import { useUserContext } from '../../context/UserContext';
 
 export const LoginPage = () => {
     const navigate = useNavigate();
+    const { setToken } = useAuthContext();
+    const { setUser } = useUserContext();
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -29,9 +33,12 @@ export const LoginPage = () => {
               setLoading(false);
               console.log(res.data);
               setError(false)
-              sessionStorage.setItem('token',JSON.stringify(res.data.token));
-              sessionStorage.setItem('tokenExp',JSON.stringify(res.data.expiresIn))
-              localStorage.setItem('user',JSON.stringify(res.data.data));
+              const tokenData = {
+                token: res.data.token,
+                expiresIn: res.data.expiresIn,
+              }
+              setToken(tokenData);
+              setUser(res.data.data);
               navigate('/');
           }).catch(err => {
               setLoading(false);
@@ -41,11 +48,11 @@ export const LoginPage = () => {
           });
       }
   return (
-    <div className=' lg:px-32 px-10'>
-        <header className=' text-center my-8'>
+    <div className=' lg:px-32 px-10 dark:bg-primary-dark h-screen overflow-auto dark:text-slate-100'>
+        <div className=' text-center py-8'>
             <h1 className=' font-bold text-orange-500 text-3xl'>Welcome to PDS Store</h1>
             <p className=' font-semibold text-sm'>Your online patform to buy and sell anything </p>
-        </header>
+        </div>
         <form onSubmit={handleSubmit} className=' lg:w-2/3 mx-auto'>
             <h2 className='font-bold text-orange-500 text-xl'>Sign In</h2>
             <p className=' mb-6'>Don't have an account? <Link className=' text-orange-500' to='/signup'>Sign Up</Link></p>
