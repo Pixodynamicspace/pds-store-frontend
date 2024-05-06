@@ -10,4 +10,7 @@
     * {
         font-family: 'Rubik','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
     }
+    input,textarea {
+        @apply dark:text-primary-orange-muted dark:focus:text-primary-orange-base
+    }
 }

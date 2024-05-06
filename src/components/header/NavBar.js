@@ -44,7 +44,7 @@ export const NavBar = () => {
                     <div className=' w-6'>
                         <img src={user? user?.profile_pic : profile_image} alt=""/>
                     </div>
-                    <NavLink to="" className={linkStyle} >
+                    <NavLink to="/dashboard" className={linkStyle} >
                         {user? user?.fullName : 'User'}
                     </NavLink>
                 </div>

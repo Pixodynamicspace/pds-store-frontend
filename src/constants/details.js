@@ -5,6 +5,14 @@ export const config = {
         }
       };
 
+export const getConfigure = ( token ) => {
+    return {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+}
+
 export const roles = {
     admin: 'ADMIN',
     staff:  'STAFF',

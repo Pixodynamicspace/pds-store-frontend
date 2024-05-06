@@ -1,16 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { GET_ALL_CATEGORIES } from '../../constants/links';
-import { config } from '../../constants/details';
+import { GET_ALL_CATEGORIES } from '../constants/links';
+import { config } from '../constants/details';
 import axios from 'axios';
-import { AiFillCaretDown, AiFillCaretUp, AiOutlineSearch } from 'react-icons/ai';
-import { useSearchParams } from "react-router-dom";
+import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 
-export const ProductSearch = () => {
+export const CategoryDropDown = ( { setValue } ) => {
     const [isOpen, setIsOpen] = useState(false);
     const [categories, setCategories] = useState([]);
-    const [selectedOption, setSelectedOption] = useState('all');
-    const [query, setQuery] = useState('');
-    let [, setSearchParams] = useSearchParams();
+    const [selectedOption, setSelectedOption] = useState();
     const fetchCategories = useCallback(async (signal) => {
         try {
            const result = await axios.get(GET_ALL_CATEGORIES, {signal,...config});
@@ -37,34 +34,23 @@ export const ProductSearch = () => {
     const handleOptionClick = (option) => {
         setSelectedOption(option);
         setIsOpen(false);
+        setValue(option);
       };
-
-    const handleSearch = (event)=> {
-        setQuery(event.currentTarget.value);
-        let params = {}
-        params[selectedOption] = event.currentTarget.value;
-        setSearchParams(params);
-    }
   return (
-    <div className=' flex lg:justify-center items-center w-3/5 rounded-md lg:w-2/5 mx-auto my-4 z-auto pl-2 lg:pl-0 bg-white'>
-            <div className=" relative custom-dropdown hidden lg:block bg-primary-orange-base focus:outline-none hover:bg-primary-orange-muted 
-                py-1 text-primary-orange-base w-2/5 text-center cursor-pointer rounded-r-lg transition-all duration-500 ">
+    <div className=' flex lg:justify-center items-center w-full rounded-md mx-auto my-4 z-auto  bg-white'>
+            <div className=" relative custom-dropdown bg-primary-orange-base focus:outline-none hover:bg-primary-orange-muted 
+                py-1 text-primary-orange-base w-full text-center cursor-pointer rounded-r-lg transition-all duration-500 ">
                         <div className="selected-option font-bold text-white text-center flex justify-center gap-2 items-center p-2" onClick={() => setIsOpen(!isOpen)}>
-                            <p>{ selectedOption[0].toLocaleUpperCase() + selectedOption.toLocaleLowerCase().slice(1)}</p> {isOpen? <AiFillCaretUp/> : <AiFillCaretDown/>}
+                            <p>{ selectedOption?  selectedOption?.category_name[0]?.toLocaleUpperCase() + selectedOption?.category_name?.toLocaleLowerCase().slice(1) : "Select Category"}</p> {isOpen? <AiFillCaretUp/> : <AiFillCaretDown/>}
                         </div>
                         {isOpen && (
                             <ul className=" absolute bg-white options-list text-left py-4 font-bold font-Space-Grotesk rounded-md border border-primary-orange-base w-full shadow-sm shadow-primary-dark">
-                            <li
-                                className={`${'all' === selectedOption ? 'selected ' : ''} cursor-pointer hover:bg-yellow-300 px-4`}
-                                onClick={() => handleOptionClick('all')}
-                                >
-                                {'All'}
-                                </li>
+                            
                             {categories? categories.map((category, index) => (
                                 <li
                                 key={index}
                                 className={`${category.category_name === selectedOption ? 'selected ' : ''} cursor-pointer hover:bg-yellow-300 px-4`}
-                                onClick={() => handleOptionClick(category.category_name)}
+                                onClick={() => handleOptionClick(category)}
                                 >
                                 {category.category_name[0].toLocaleUpperCase() + category.category_name.toLocaleLowerCase().slice(1)}
                                 </li>
@@ -72,8 +58,6 @@ export const ProductSearch = () => {
                             </ul>
                         )}
             </div>
-            <AiOutlineSearch size={20} className=' lg:hidden'/>
-            <input className=' focus:outline-none p-1 w-3/5' type="search" autoComplete='off' name="search" onChange={handleSearch} value={query} placeholder='Search for anything'/>
         </div>
   )
 }

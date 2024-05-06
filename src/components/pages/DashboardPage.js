@@ -7,7 +7,7 @@ export const DashboardPage = () => {
   return (
     <div className=' flex flex-col min-h-screen dark:bg-primary-dark justify-between'>
       <Header/>
-      <div className=' overflow-y-auto h-full bg-inherit dark:text-white'>
+      <div className=' overflow-y-auto bg-inherit dark:text-white'>
         <Outlet/>
       </div>
       <Footer/>

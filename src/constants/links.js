@@ -44,3 +44,6 @@ export const GET_ALL_CAROUSEL_IMAGES = `${BASE_URL}/carousel/images`;
 // Products
 // eslint-disable-next-line
 export const GET_ALL_PRODUCTS = `${BASE_URL}/product/products`;
+export const CREATE_PRODUCT = `${BASE_URL}/product/create`
+export const ADD_IMAGE_TO_PRODUCT = `${BASE_URL}/product/add-images`
+export const GET_PRODUCT_BY_ID = `${BASE_URL}/product/`

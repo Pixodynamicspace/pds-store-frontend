@@ -31,7 +31,7 @@ export const HomeProducts = () => {
             <div>
                 <h2>Flash Sales</h2>
             </div>
-            <div>
+            <div className=' grid grid-cols-2 lg:grid-cols-4 h-screen'>
                 {products? products.map((product)=> (
                     <div key={product._id}>
                         <ProductCard product={product}/>
