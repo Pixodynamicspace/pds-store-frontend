@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 const ThemeContext = createContext()
 
@@ -6,25 +7,29 @@ export function ThemeContextProvider ({children}){
     const [ theme, updateTheme] = useState();
 
     useEffect(() =>{
-        const windowsIsDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-        if (windowsIsDarkTheme) {
-            document.documentElement.classList.add('dark');
-            updateTheme('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            updateTheme('light');
-        } 
+        const userTheme = Cookies.get("theme");
+        if (userTheme) {
+            setTheme(JSON.parse(userTheme));
+        }else{
+            const windowsIsDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+            if (windowsIsDarkTheme) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+         
     },[])
 
     const setTheme = ( theme ) => {
         if (theme === 'dark') {
             updateTheme(theme);
             document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', theme);
+            Cookies.set('theme', theme);
         } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.removeItem('theme');
             updateTheme(theme);
+            document.documentElement.classList.remove('dark');
+            Cookies.set('theme', theme);
         }
     }
 
