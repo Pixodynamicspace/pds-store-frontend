@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { GET_ALL_CATEGORIES } from '../constants/links';
 import axios from 'axios';
 import { config } from '../constants/details';
+import { ThreeCircles } from 'react-loader-spinner';
 import { CategoryTabItem } from './CategoryTabItem';
 
 export const CategoriesTab = () => {
@@ -37,10 +38,20 @@ export const CategoriesTab = () => {
                         <div key={category._id}><CategoryTabItem id={category._id} category_name={category.category_name} picture_url={category.picture_url}/></div>
                     ))
                 :
-                    <div>
-                        no data
-                        
-                    </div>
+                <div className=' flex justify-center bg-orange-600 py-1 mx-auto w-1/2 mb-2 '>
+                    <ThreeCircles
+                        height="30"
+                        width="100"
+                        color="#ffffff"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                        ariaLabel="three-circles-rotating"
+                        outerCircleColor=""
+                        innerCircleColor=""
+                        middleCircleColor=""
+                        />
+                </div>
                 }
             </div>
             
