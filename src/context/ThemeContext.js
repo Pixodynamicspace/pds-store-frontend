@@ -25,11 +25,11 @@ export function ThemeContextProvider ({children}){
         if (theme === 'dark') {
             updateTheme(theme);
             document.documentElement.classList.add('dark');
-            Cookies.set('theme', theme);
+            Cookies.set('theme', JSON.stringify(theme));
         } else {
             updateTheme(theme);
             document.documentElement.classList.remove('dark');
-            Cookies.set('theme', theme);
+            Cookies.set('theme', JSON.stringify(theme));
         }
     }
 
